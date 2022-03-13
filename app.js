@@ -15,6 +15,7 @@ app.use(express.json())
 
 app.get("/todos", async (request, response) => {
     try {
+        response.set('Access-Control-Allow-Origin', '*')
         const allItems = await Todo.find()
         response.status(200).json(allItems)
     } catch (error) {
@@ -26,6 +27,7 @@ app.get("/todos", async (request, response) => {
 
 app.post("/todos", async (request, response) => {
     try {
+        response.set('Access-Control-Allow-Origin', '*')
         const newItem = await Todo.create(request.body)
         newItem.save()
         response.status(201).json(request.body)
@@ -38,6 +40,7 @@ app.post("/todos", async (request, response) => {
 
 app.put("/todos/:id", async (request, response) => {
     try {
+        response.set('Access-Control-Allow-Origin', '*')
         await Todo.findOneAndUpdate({ _id: request.params.id }, request.body)
         response.status(200).json(request.body)
     } catch (error) {
@@ -49,6 +52,7 @@ app.put("/todos/:id", async (request, response) => {
 
 app.delete("/todos/:id", async (request, response) => {
     try {
+        response.set('Access-Control-Allow-Origin', '*')
         await Todo.deleteOne({ _id: request.params.id })
         response.status(204)
     } catch (error) {
