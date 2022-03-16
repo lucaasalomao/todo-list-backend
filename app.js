@@ -1,3 +1,6 @@
+/* environment variables import */
+require('dotenv').config()
+
 /* db connection */
 const connect = require("./config/db.config")
 connect()
@@ -60,4 +63,4 @@ app.delete("/todos/:id", async (request, response) => {
     }
 })
 
-app.listen(process.env.PORT || 3000, () => console.log("Servidor rodando na porta 3000"))
+app.listen(process.env.PORT , () => console.log("Servidor rodando na porta 3000"))
